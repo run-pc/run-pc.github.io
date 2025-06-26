@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>奔馳電腦 - 專業遠端電腦維修服務</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', 'Roboto', sans-serif;
+            background-color: #fff5f5;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 100%);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
+        }
+        .service-icon {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+        .btn-primary {
+            background-color: #dc2626;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #b91c1c;
+        }
+        .lang-en {
+            display: none;
+        }
+        html[lang="en"] .lang-zh {
+            display: none;
+        }
+        html[lang="en"] .lang-en {
+            display: block;
+        }
+        html[lang="en"] .lang-en-inline {
+            display: inline-block;
+        }
+        .lang-en-inline {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-red-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <svg class="h-10 w-10 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21.928 11.607c-.202-.488-.635-.605-.928-.633V8c0-1.103-.897-2-2-2h-6V4.61c.305-.274.5-.668.5-1.11a1.5 1.5 0 0 0-3 0c0 .442.195.836.5 1.11V6h-6c-1.103 0-2 .897-2 2v2.997l-.082.006A1 1 0 0 0 2 12v5c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-5a.934.934 0 0 0-.072-.393zM12 4a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-7 4h14v2H5V8zm10 9H9v-3h6v3z"/>
+                </svg>
+                <span class="ml-2 text-xl font-bold text-gray-800">
+                    <span class="lang-zh">奔馳電腦</span>
+                    <span class="lang-en">Benz Computer</span>
+                </span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">首頁</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                <a href="#services" class="text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">服務項目</span>
+                    <span class="lang-en">Services</span>
+                </a>
+                <a href="#platforms" class="text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">適用平台</span>
+                    <span class="lang-en">Platforms</span>
+                </a>
+                <a href="#contact" class="text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">聯絡我們</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+                <button id="lang-switch" class="text-gray-700 hover:text-red-600 transition flex items-center">
+                    <svg class="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="lang-zh">English</span>
+                    <span class="lang-en">中文</span>
+                </button>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button id="lang-switch-mobile" class="text-gray-700 hover:text-red-600 transition mr-4">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+                <button id="menu-toggle" class="text-gray-700 focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-2 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">首頁</span>
+                    <span class="lang-en">Home</span>
+                </a>
+                <a href="#services" class="block text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">服務項目</span>
+                    <span class="lang-en">Services</span>
+                </a>
+                <a href="#platforms" class="block text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">適用平台</span>
+                    <span class="lang-en">Platforms</span>
+                </a>
+                <a href="#contact" class="block text-gray-700 hover:text-red-600 transition">
+                    <span class="lang-zh">聯絡我們</span>
+                    <span class="lang-en">Contact</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient text-white">
+        <div class="container mx-auto px-4 py-16 md:py-24">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+                        <span class="lang-zh">專業遠端電腦維修服務</span>
+                        <span class="lang-en">Professional Remote Computer Repair Services</span>
+                    </h1>
+                    <p class="text-lg md:text-xl mb-6">
+                        <span class="lang-zh">不出門，也能解決電腦煩惱！我們提供快速、可靠的遠端技術支援，協助處理各類軟硬體問題，讓您安心又便利。</span>
+                        <span class="lang-en">Solve computer problems without leaving home! We provide fast, reliable remote technical support to help with various hardware and software issues, giving you peace of mind and convenience.</span>
+                    </p>
+                    <a href="#contact" class="inline-block bg-white text-red-600 font-semibold px-6 py-3 rounded-lg shadow-lg hover:bg-red-50 transition">
+                        <span class="lang-zh">立即聯繫我們</span>
+                        <span class="lang-en">Contact Us Now</span>
+                    </a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <svg class="w-full max-w-md" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="100" y="80" width="300" height="200" rx="10" fill="#FFFFFF" />
+                        <rect x="120" y="100" width="260" height="160" rx="5" fill="#FECACA" />
+                        <path d="M250 280L270 320H230L250 280Z" fill="#FFFFFF" />
+                        <rect x="200" y="320" width="100" height="20" rx="5" fill="#FFFFFF" />
+                        <circle cx="250" cy="180" r="50" fill="#DC2626" opacity="0.8" />
+                        <path d="M275 170L240 190L240 150L275 170Z" fill="white" />
+                        <path d="M150 130H180M150 150H200M150 170H190" stroke="#991B1B" stroke-width="4" stroke-linecap="round" />
+                        <path d="M320 130H350M320 150H370M320 170H360" stroke="#991B1B" stroke-width="4" stroke-linecap="round" />
+                        <path d="M150 210H180M150 230H200M150 250H190" stroke="#991B1B" stroke-width="4" stroke-linecap="round" />
+                        <path d="M320 210H350M320 230H370M320 250H360" stroke="#991B1B" stroke-width="4" stroke-linecap="round" />
+                        <circle cx="380" cy="100" r="5" fill="#FC8181" />
+                        <circle cx="360" cy="100" r="5" fill="#F6E05E" />
+                        <circle cx="340" cy="100" r="5" fill="#68D391" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    <span class="lang-zh">服務項目</span>
+                    <span class="lang-en">Our Services</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <span class="lang-zh">我們提供遠端協助服務，幫您排除軟硬體問題、系統錯誤、病毒問題等常見電腦狀況，讓您在家就能安心修好電腦！</span>
+                    <span class="lang-en">We provide remote assistance services to help you resolve hardware and software issues, system errors, virus problems, and other common computer issues, allowing you to fix your computer from the comfort of your home!</span>
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-red-50 rounded-xl p-6 shadow-md transition duration-300">
+                    <div class="service-icon bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-2">
+                        <span class="lang-zh">系統異常處理</span>
+                        <span class="lang-en">System Error Resolution</span>
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        <span class="lang-zh">解決系統當機、藍屏、黑屏等問題，讓您的電腦恢復正常運作。</span>
+                        <span class="lang-en">Resolve system crashes, blue screens, black screens, and other issues to restore your computer to normal operation.</span>
+                    </p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-red-50 rounded-xl p-6 shadow-md transition duration-300">
+                    <div class="service-icon bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-2">
+                        <span class="lang-zh">軟體安裝／更新／錯誤排除</span>
+                        <span class="lang-en">Software Installation/Updates/Troubleshooting</span>
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        <span class="lang-zh">協助安裝、更新軟體，解決軟體運行錯誤和相容性問題。</span>
+                        <span class="lang-en">Assist with software installation, updates, and resolve software runtime errors and compatibility issues.</span>
+                    </p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-red-50 rounded-xl p-6 shadow-md transition duration-300">
+                    <div class="service-icon bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-2">
+                        <span class="lang-zh">病毒／惡意程式清除</span>
+                        <span class="lang-en">Virus/Malware Removal</span>
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        <span class="lang-zh">專業掃描並清除電腦中的病毒、木馬、間諜軟體等惡意程式。</span>
+                        <span class="lang-en">Professional scanning and removal of viruses, trojans, spyware, and other malicious programs from your computer.</span>
+                    </p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-red-50 rounded-xl p-6 shadow-md transition duration-300">
+                    <div class="service-icon bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-2">
+                        <span class="lang-zh">磁碟清理與效能優化</span>
+                        <span class="lang-en">Disk Cleanup & Performance Optimization</span>
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        <span class="lang-zh">清理磁碟空間，優化系統效能，讓電腦運行更快速流暢。</span>
+                        <span class="lang-en">Clean up disk space and optimize system performance for faster and smoother computer operation.</span>
+                    </p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card bg-red-50 rounded-xl p-6 shadow-md transition duration-300">
+                    <div class="service-icon bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-2">
+                        <span class="lang-zh">設定協助</span>
+                        <span class="lang-en">Configuration Assistance</span>
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        <span class="lang-zh">協助設定印表機、網路連線、帳號權限等各種系統設定。</span>
+                        <span class="lang-en">Help with printer setup, network connections, account permissions, and various system settings.</span>
+                    </p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card bg-red-50 rounded-xl p-6 shadow-md transition duration-300">
+                    <div class="service-icon bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 text-center mb-2">
+                        <span class="lang-zh">共用印表機列印設定</span>
+                        <span class="lang-en">Shared Printer Configuration</span>
+                    </h3>
+                    <p class="text-gray-600 text-center">
+                        <span class="lang-zh">解決網路印表機共享問題，設定多台電腦共用印表機。</span>
+                        <span class="lang-en">Resolve network printer sharing issues and set up multiple computers to share printers.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platforms Section -->
+    <section id="platforms" class="py-16 bg-red-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    <span class="lang-zh">適用平台</span>
+                    <span class="lang-en">Supported Platforms</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <span class="lang-zh">我們的遠端服務支援多種作業系統和平台，無論您使用何種設備，我們都能提供專業協助。</span>
+                    <span class="lang-en">Our remote services support various operating systems and platforms. No matter what device you use, we can provide professional assistance.</span>
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <!-- Platform 1 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition text-center">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/>
+                    </svg>
+                    <h3 class="font-semibold text-gray-800">Windows</h3>
+                </div>
+                
+                <!-- Platform 2 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition text-center">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8zM9.5 16a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm-2.5-5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                    </svg>
+                    <h3 class="font-semibold text-gray-800">macOS</h3>
+                </div>
+                
+                <!-- Platform 3 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition text-center">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <line x1="10" y1="9" x2="8" y2="9"/>
+                    </svg>
+                    <h3 class="font-semibold text-gray-800">iMac</h3>
+                </div>
+                
+                <!-- Platform 4 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition text-center">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="4" y="4" width="16" height="12" rx="1"/>
+                        <polygon points="8 20 16 20 15 16 9 16"/>
+                    </svg>
+                    <h3 class="font-semibold text-gray-800">MacBook</h3>
+                </div>
+                
+                <!-- Platform 5 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition text-center">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+                    </svg>
+                    <h3 class="font-semibold text-gray-800">VMware</h3>
+                </div>
+                
+                <!-- Platform 6 -->
+                <div class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition text-center">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-red-600" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4 5h16v2H4zm0 6h16v2H4zm0 6h16v2H4z"/>
+                    </svg>
+                    <h3 class="font-semibold text-gray-800">SQL Server</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-red-50 rounded-xl p-8 shadow-md border-l-4 border-red-500">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-lg font-medium text-gray-800">
+                            <span class="lang-zh">遠端服務須知</span>
+                            <span class="lang-en">Remote Service Requirements</span>
+                        </h3>
+                        <p class="mt-2 text-gray-600">
+                            <span class="lang-zh">僅限可正常開機進入桌面，並具備穩定網路連線之設備。若電腦無法開機或無網路，建議改採現場維修服務。</span>
+                            <span class="lang-en">Limited to devices that can boot normally to the desktop and have a stable internet connection. If your computer cannot boot or has no internet connection, we recommend on-site repair service instead.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-red-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">
+                    <span class="lang-zh">聯絡我們</span>
+                    <span class="lang-en">Contact Us</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    <span class="lang-zh">需要協助？立即聯繫我們的專業技術團隊，我們將盡快為您提供遠端支援服務。</span>
+                    <span class="lang-en">Need assistance? Contact our professional technical team now, and we will provide remote support services as soon as possible.</span>
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl p-8 shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6 text-center">
+                        <span class="lang-zh">聯絡資訊</span>
+                        <span class="lang-en">Contact Information</span>
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">
+                                        <span class="lang-zh">台北市北投區文林北路238號</span>
+                                        <span class="lang-en">No. 238, Wenlin North Road, Beitou District, Taipei City</span>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">02-2823-6636</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">win10run@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-700">
+                                        <span class="lang-zh">營業時間：上午10點至下午5點</span>
+                                        <span class="lang-en">Business Hours: 10:00 AM - 5:00 PM</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="tel:0228236636" class="inline-block bg-red-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition">
+                            <span class="lang-zh">立即撥打電話</span>
+                            <span class="lang-en">Call Now</span>
+                        </a>
+                        <a href="mailto:win10run@gmail.com" class="inline-block bg-white text-red-600 border border-red-600 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-red-50 transition ml-4">
+                            <span class="lang-zh">發送郵件</span>
+                            <span class="lang-en">Send Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-red-50 rounded-xl p-4 shadow-md">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <div class="w-full h-64 rounded-lg overflow-hidden">
+                            <div class="w-full h-full bg-red-100 flex items-center justify-center">
+                                <svg class="w-12 h-12 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                                <span class="ml-2 text-gray-600">
+                                    <span class="lang-zh">台北市北投區文林北路238號</span>
+                                    <span class="lang-en">No. 238, Wenlin North Road, Beitou District, Taipei City</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-red-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <svg class="h-8 w-8 text-red-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M21.928 11.607c-.202-.488-.635-.605-.928-.633V8c0-1.103-.897-2-2-2h-6V4.61c.305-.274.5-.668.5-1.11a1.5 1.5 0 0 0-3 0c0 .442.195.836.5 1.11V6h-6c-1.103 0-2 .897-2 2v2.997l-.082.006A1 1 0 0 0 2 12v5c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2v-5a.934.934 0 0 0-.072-.393zM12 4a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-7 4h14v2H5V8zm10 9H9v-3h6v3z"/>
+                        </svg>
+                        <span class="ml-2 text-xl font-bold">
+                            <span class="lang-zh">奔馳電腦</span>
+                            <span class="lang-en">Benz Computer</span>
+                        </span>
+                    </div>
+                    <p class="mt-2 text-red-200">
+                        <span class="lang-zh">專業遠端電腦維修服務</span>
+                        <span class="lang-en">Professional Remote Computer Repair Services</span>
+                    </p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-red-200">
+                        <span class="lang-zh">© 2023 奔馳電腦. 版權所有.</span>
+                        <span class="lang-en">© 2023 Benz Computer. All rights reserved.</span>
+                    </p>
+                    <p class="text-red-200">
+                        <span class="lang-zh">電話：02-2823-6636</span>
+                        <span class="lang-en">Tel: 02-2823-6636</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Language switcher
+        const langSwitch = document.getElementById('lang-switch');
+        const langSwitchMobile = document.getElementById('lang-switch-mobile');
+        
+        function toggleLanguage() {
+            const htmlElement = document.documentElement;
+            if (htmlElement.lang === 'zh-TW') {
+                htmlElement.lang = 'en';
+                localStorage.setItem('language', 'en');
+            } else {
+                htmlElement.lang = 'zh-TW';
+                localStorage.setItem('language', 'zh-TW');
+            }
+        }
+        
+        langSwitch.addEventListener('click', toggleLanguage);
+        langSwitchMobile.addEventListener('click', toggleLanguage);
+        
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                document.documentElement.lang = savedLanguage;
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'955b4031b2eb843a',t:'MTc1MDkyNTY2My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
